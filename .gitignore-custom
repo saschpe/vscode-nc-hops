@@ -1,0 +1,6 @@
+# Custom ignore rules, update with:
+# { cat .gitignore-custom ; gibo Node VisualStudioCode } > .gitignore
+
+package-lock.json
+vsc-extension-quickstart.md
+out/

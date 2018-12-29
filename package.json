@@ -1,0 +1,66 @@
+{
+	"name": "nc-hops",
+	"displayName": "NC-HOPS",
+	"description": "NC-HOPS support for Visual Studio Code",
+	"version": "0.0.1",
+	"publisher": "saschpe",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"icon": "assets/icon-128x128.png",
+	"categories": [
+		"Programming Languages"
+	],
+	"bugs": {
+		"url": "https://github.com/saschpe/vscode-nc-hops/issues"
+	},
+	"homepage": "https://github.com/saschpe/vscode-nc-hops",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/saschpe/vscode-nc-hops.git"
+	},
+	"keywords": [
+		"NC-HOPS",
+		"HOPS",
+		"hop"
+	],
+	"activationEvents": [
+		"onCommand:extension.hops"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "hops",
+				"aliases": [
+					"NC-Hops",
+					"Hops"
+				],
+				"extensions": [
+					".hop"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "hops",
+				"scopeName": "source.hops",
+				"path": "./syntaxes/hops.tmLanguage"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25",
+		"tslint": "^5.8.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	}
+}
