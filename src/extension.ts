@@ -150,14 +150,33 @@ export function activate(context: vscode.ExtensionContext) {
 				if (!linePrefix.endsWith('CALL ')) {
 					return undefined;
 				}
-
 				return callFunctions.map(it => new vscode.CompletionItem(it, vscode.CompletionItemKind.Method));
 			}
 		},
 		' ' // triggered whenever a '_' is being typed
 	);
 
-	context.subscriptions.push(provider1, provider2);
+
+	let jobVariables = [
+		"_JOB_MIRX",
+		"_JOB_MIRY",
+		"_JOB_MIRX | _JOB_MIRY",
+	]
+
+	const provider3 = vscode.languages.registerCompletionItemProvider('hops',
+	{
+		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+			let linePrefix = document.lineAt(position).text.substr(0, position.character);
+			if (!linePrefix.endsWith('IF ')) {
+				return undefined;
+			}
+			return jobVariables.map(it => new vscode.CompletionItem(it, vscode.CompletionItemKind.Method));
+		}
+	},
+	' ' // triggered whenever a '_' is being typed
+);
+
+	context.subscriptions.push(provider1, provider2, provider3);
 }
 
 export function deactivate() { }
