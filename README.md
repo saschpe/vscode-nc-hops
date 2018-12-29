@@ -8,6 +8,8 @@ Syntax support for the HOPS CAM language.
 
 ## Features
 
+* Folding
+* Code snippets
 * Syntax highlighting
 
 ## Installation
