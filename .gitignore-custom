@@ -4,3 +4,4 @@
 package-lock.json
 vsc-extension-quickstart.md
 out/
+*.vsix
