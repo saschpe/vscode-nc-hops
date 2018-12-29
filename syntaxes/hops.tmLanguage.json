@@ -25,7 +25,7 @@
       "patterns": [
         {
           "name": "keyword.control.hops",
-          "match": "\\b(VARS|START|END)\\b"
+          "match": "\\b(VAL|VARS|START|END)\\b"
         },
         {
           "name": "keyword.control.conditional.hops",
@@ -55,6 +55,9 @@
         },
         {
           "include": "#tool-selection"
+        },
+        {
+          "include": "#variable-assignment"
         }
       ]
     },
@@ -62,7 +65,11 @@
       "patterns": [
         {
           "name": "comment.line.double-slash.hops",
-          "match": "^[ \\t]*(//|;).*$"
+          "match": ";.*$"
+        },
+        {
+          "name": "comment.line.double-slash.hops",
+          "match": "^\\s*(/).*$"
         }
       ]
     },
@@ -139,6 +146,14 @@
         {
           "name": "entity.name.function.hops",
           "match": "WZ(B|F)"
+        }
+      ]
+    },
+    "variable-assignment": {
+      "patterns": [
+        {
+          "name": "keyword.hops",
+          "match": ":="
         }
       ]
     }

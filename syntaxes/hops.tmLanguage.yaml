@@ -28,7 +28,7 @@ repository:
   keywords:
     patterns:
     - name: keyword.control.hops
-      match: "\\b(VARS|START|END)\\b"
+      match: "\\b(VAL|VARS|START|END)\\b"
     - name: keyword.control.conditional.hops
       match: "\\b(ELSE|IF)\\b"
 
@@ -42,11 +42,14 @@ repository:
     - include: '#tool-move-start'
     - include: '#tool-option'
     - include: '#tool-selection'
+    - include: '#variable-assignment'
   
   comment:
     patterns:
     - name: comment.line.double-slash.hops
-      match: ^[ \t]*(//|;).*$
+      match: ;.*$
+    - name: comment.line.double-slash.hops
+      match: ^\s*(/).*$
 
   for-loop:
     begin: (FOR)
@@ -93,3 +96,8 @@ repository:
     patterns:
     - name: entity.name.function.hops
       match: WZ(B|F)
+
+  variable-assignment:
+    patterns:
+    - name: keyword.hops
+      match: :=
