@@ -7,12 +7,3 @@ IF GZ=4
   END
   WZF(2,_VE,_V,_VA_SD,_ANF,'1')
 END
-
-
-FOR POS := 0 TO 9
- 
-END
-
-FOR POS := 0 TO 9 STEP 1
- 
-END
