@@ -16,7 +16,7 @@ Syntax support for the HOPS CAM language.
 You can install the plugin by searching for [HOPS Language extension](https://marketplace.visualstudio.com/items?itemName=saschpe.nc-hops) in the extensions market place, or by entering
 
 ```
-ext install nc-hops language
+ext install saschpe.nc-hops
 ```
 
 in to the command palette.
