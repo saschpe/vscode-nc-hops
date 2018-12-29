@@ -27,13 +27,16 @@ repository:
   keywords:
     patterns:
     - name: keyword.control.hops
-      match: "\\b(VAL|VARS|START|END)\\b"
+      match: "\\b(VAL|VARS|START)\\b"
+    - name: keyword.control.loop.hops
+      match: "\\b(FOR|TO|STEP|END)\\b"
     - name: keyword.control.conditional.hops
       match: "\\b(ELSE|IF)\\b"
 
   statements:
     patterns:
     - include: '#comment'
+    #- include: '#for-loop'
     #- include: '#library-function'
     - include: '#macro-call'
     - include: '#machining-plane'
@@ -51,10 +54,16 @@ repository:
       match: ^\s*(/).*$
 
   for-loop:
-    begin: (FOR)
+    begin: (FOR)\s+.*\s+(TO)\s+.*\s+(?:(STEP).*)?
     beginCaptures: 
-      '0': { name: keyword.control.loop.hops }    
+      '0': { name: keyword.control.loop.hops }
+      '1': { name: keyword.control.loop.hops }
+      '2': { name: keyword.control.loop.hops }
+      '3': { name: keyword.control.loop.hops }
     end: (END)
+    patterns:
+    - include: '#keywords'
+    - include: '#variable-assignment'
 
   macro-call:
     begin: '(CALL)\s*([_[:alpha:]][_[:alnum:]]*)'
@@ -62,6 +71,9 @@ repository:
       '0': { name: storage.type.hops }
       '1': { name: entity.name.function.hops }
     end: (?=$)
+    patterns:
+    - include: '#keywords'
+    - include: '#variable-assignment'
 
   library-function:
     patterns:
@@ -93,7 +105,7 @@ repository:
   tool-selection:
     patterns:
     - name: entity.name.function.hops
-      match: WZ(B|F)
+      match: WZ(B|F|S)
 
   variable-assignment:
     patterns:

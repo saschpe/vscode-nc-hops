@@ -24,7 +24,11 @@
       "patterns": [
         {
           "name": "keyword.control.hops",
-          "match": "\\b(VAL|VARS|START|END)\\b"
+          "match": "\\b(VAL|VARS|START)\\b"
+        },
+        {
+          "name": "keyword.control.loop.hops",
+          "match": "\\b(FOR|TO|STEP|END)\\b"
         },
         {
           "name": "keyword.control.conditional.hops",
@@ -73,13 +77,30 @@
       ]
     },
     "for-loop": {
-      "begin": "(FOR)",
+      "begin": "(FOR)\\s+.*\\s+(TO)\\s+.*\\s+(?:(STEP).*)?",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.loop.hops"
+        },
+        "1": {
+          "name": "keyword.control.loop.hops"
+        },
+        "2": {
+          "name": "keyword.control.loop.hops"
+        },
+        "3": {
+          "name": "keyword.control.loop.hops"
         }
       },
-      "end": "(END)"
+      "end": "(END)",
+      "patterns": [
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#variable-assignment"
+        }
+      ]
     },
     "macro-call": {
       "begin": "(CALL)\\s*([_[:alpha:]][_[:alnum:]]*)",
@@ -91,7 +112,15 @@
           "name": "entity.name.function.hops"
         }
       },
-      "end": "(?=$)"
+      "end": "(?=$)",
+      "patterns": [
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#variable-assignment"
+        }
+      ]
     },
     "library-function": {
       "patterns": [
@@ -141,7 +170,7 @@
       "patterns": [
         {
           "name": "entity.name.function.hops",
-          "match": "WZ(B|F)"
+          "match": "WZ(B|F|S)"
         }
       ]
     },
