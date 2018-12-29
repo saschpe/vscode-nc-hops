@@ -2,7 +2,7 @@
 	"name": "nc-hops",
 	"displayName": "NC-HOPS",
 	"description": "NC-HOPS support for Visual Studio Code",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "saschpe",
 	"engines": {
 		"vscode": "^1.30.0"
