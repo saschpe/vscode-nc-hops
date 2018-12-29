@@ -28,6 +28,12 @@ We welcome any contributions to help make the extension better. There are severa
 
 > Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
+### Convert tmLanguage YAML to JSON
+```
+npm install js-yaml
+npx js-yaml syntaxes/hops.tmLanguage.yaml > syntaxes/hops.tmLanguage.json
+```
+
 ## Credits
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [vscode-docs on GitHub](https://github.com/Microsoft/vscode-docs)

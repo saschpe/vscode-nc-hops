@@ -1,0 +1,146 @@
+{
+  "name": "NC-HOPS",
+  "scopeName": "source.hops",
+  "fileTypes": [
+    "hop"
+  ],
+  "variables": {
+    "identifier": "[_$[:alpha:]][_$[:alnum:]]*",
+    "decimalNumber": "(?<!\\$)(?:\n  (?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*(n)?\\b)| # 1.1E+3\n  (?:\\b[0-9][0-9_]*(\\.)[eE][+-]?[0-9][0-9_]*(n)?\\b)|             # 1.E+3\n  (?:\\B(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*(n)?\\b)|             # .1E+3\n  (?:\\b[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*(n)?\\b)|                 # 1E+3\n  (?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*(n)?\\b)|                      # 1.1\n  (?:\\b[0-9][0-9_]*(\\.)(n)?\\B)|                                  # 1.\n  (?:\\B(\\.)[0-9][0-9_]*(n)?\\b)|                                  # .1\n  (?:\\b[0-9][0-9_]*(n)?\\b(?!\\.))                                 # 1\n)(?!\\$)",
+    "anyNumber": "({{decimalNumber}})",
+    "matchingParenthesis": "(\\(([^\\(\\)]|(\\([^\\(\\)]*\\)))*\\))",
+    "matchingBraces": "(\\{([^\\{\\}]|(\\{[^\\{\\}]*\\}))*\\})",
+    "matchingBrackets": "(\\[([^\\[\\]]|(\\[[^\\[\\]]*\\]))*\\])"
+  },
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#statements"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.hops",
+          "match": "\\b(VARS|START|END)\\b"
+        },
+        {
+          "name": "keyword.control.conditional.hops",
+          "match": "\\b(ELSE|IF)\\b"
+        }
+      ]
+    },
+    "statements": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#macro-call"
+        },
+        {
+          "include": "#machining-plane"
+        },
+        {
+          "include": "#tool-move"
+        },
+        {
+          "include": "#tool-move-start"
+        },
+        {
+          "include": "#tool-option"
+        },
+        {
+          "include": "#tool-selection"
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.hops",
+          "match": "^[ \\t]*(//|;).*$"
+        }
+      ]
+    },
+    "for-loop": {
+      "begin": "(FOR)",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.control.loop.hops"
+        }
+      },
+      "end": "(END)"
+    },
+    "macro-call": {
+      "begin": "(CALL)\\s*({{identifier}})\\s*\\((.*)\\)",
+      "beginCaptures": {
+        "0": {
+          "name": "storage.type.hops"
+        },
+        "1": {
+          "name": "entity.name.function.hops"
+        },
+        "2": {
+          "name": "variable.parameter.hops"
+        }
+      },
+      "end": "(?=$)"
+    },
+    "library-function": {
+      "patterns": [
+        {
+          "name": "support.function.hops",
+          "match": "(Bohrung|Fertigteil|NCIExt)"
+        }
+      ]
+    },
+    "machining-plane": {
+      "patterns": [
+        {
+          "name": "support.function.hops",
+          "match": "^Ebene\\d+\\(\\)$"
+        },
+        {
+          "name": "support.function.hops",
+          "match": "^FreieEbene\\(.*\\)$"
+        }
+      ]
+    },
+    "tool-move": {
+      "patterns": [
+        {
+          "name": "storage.modifier.hops",
+          "match": "\\bG\\d+(L|M|R)?\\b"
+        }
+      ]
+    },
+    "tool-move-start": {
+      "patterns": [
+        {
+          "name": "entity.name.type.hops",
+          "match": "\\b(SP|EP)\\b"
+        }
+      ]
+    },
+    "tool-option": {
+      "patterns": [
+        {
+          "name": "storage.modifier",
+          "match": "\\bTP\\b"
+        }
+      ]
+    },
+    "tool-selection": {
+      "patterns": [
+        {
+          "name": "entity.name.function.hops",
+          "match": "WZ(B|F)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+    "If statement": {
+        "prefix": "if",
+        "body": [
+            "IF ${1:condition}",
+            "  ${0:foo}",
+            "END"
+        ],
+        "description": "If statement"
+    },
+    "If-Else statement": {
+        "prefix": "if-else",
+        "body": [
+            "IF ${1:condition}",
+            "  ${2:foo}",
+            "ELSE",
+            "  ${3:bar}",
+            "END"
+        ],
+        "description": "If-Else statement"
+    },
+    "Start and end point": {
+        "prefix": "sp",
+        "body": [
+            "SP (${1:parameters})",
+            "EP (${2:0,1.1,0})"
+        ]
+    },
+    "For-to-step loop": {
+        "prefix": "for-to-step",
+        "body": [
+            "FOR POS := ${1:0} TO ${2:9} STEP ${3:1}",
+            " ${0}",
+            "END"
+        ],
+        "description": "For loop with TO and STEP"
+    },
+    "For-to loop": {
+        "prefix": "for-to",
+        "body": [
+            "FOR POS := ${1:0} TO ${2:9}",
+            " ${0}",
+            "END"
+        ],
+        "description": "For loop with TO"
+    }
+}

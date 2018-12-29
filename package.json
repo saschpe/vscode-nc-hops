@@ -9,11 +9,16 @@
 	},
 	"icon": "assets/icon-128x128.png",
 	"categories": [
-		"Programming Languages"
+		"Programming Languages",
+		"Snippets"
 	],
 	"bugs": {
 		"url": "https://github.com/saschpe/vscode-nc-hops/issues"
 	},
+	"activationEvents": [
+		"onCommand:extension.hops"
+	],
+	"main": "./out/extension.js",
 	"homepage": "https://github.com/saschpe/vscode-nc-hops",
 	"repository": {
 		"type": "git",
@@ -24,10 +29,6 @@
 		"HOPS",
 		"hop"
 	],
-	"activationEvents": [
-		"onCommand:extension.hops"
-	],
-	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [
 			{
@@ -37,15 +38,22 @@
 					"Hops"
 				],
 				"extensions": [
-					".hop"
-				]
+					"hop"
+				],
+				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
 				"language": "hops",
 				"scopeName": "source.hops",
-				"path": "./syntaxes/hops.tmLanguage"
+				"path": "./syntaxes/hops.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "hops",
+				"path": "./snippets/hops.json"
 			}
 		]
 	},
@@ -62,5 +70,8 @@
 		"tslint": "^5.8.0",
 		"@types/node": "^8.10.25",
 		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"js-yaml": "^3.12.0"
 	}
 }

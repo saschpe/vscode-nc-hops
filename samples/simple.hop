@@ -1,0 +1,18 @@
+IF GZ=4
+  // Comment
+  WZF(2,_VE,_V,_VA_SD,_ANF,'1')
+  FOR POS := 0 TO _RY-(LPY/2) STEP 38.58
+    TD := TD-2.94
+    Format(0,TD,POS-LPY/2+0.05,_ANF*2,0,0,0,0)
+  END
+  WZF(2,_VE,_V,_VA_SD,_ANF,'1')
+END
+
+
+FOR POS := 0 TO 9
+ 
+END
+
+FOR POS := 0 TO 9 STEP 1
+ 
+END
